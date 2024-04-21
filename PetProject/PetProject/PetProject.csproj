@@ -28,4 +28,10 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="docker-compose.yml">
+        <DependentUpon>Dockerfile</DependentUpon>
+      </None>
+    </ItemGroup>
+
 </Project>

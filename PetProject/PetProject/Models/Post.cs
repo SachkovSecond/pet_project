@@ -2,13 +2,13 @@
 {
     public class Post
     {
-        public Post(int postId, string postName, string postDescription)
+        public Post(){}
+        public Post(string postName, string postDescription)
         {
-            PostId = postId;
             PostName = postName;
             PostDescription = postDescription;
         }
-        public int PostId { get;  set; } = 0;
+        public Guid PostId { get;  private set; }
         public string PostName { get;  set; } = string.Empty;
         public string PostDescription { get;  set; } = string.Empty ;
     }

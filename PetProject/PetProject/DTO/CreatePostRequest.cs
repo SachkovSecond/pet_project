@@ -1,4 +1,4 @@
 ﻿namespace PetProject.DTO
 {
-    public record CreatePostRequest(int PostId, string PostName, string PostDescription);
+    public record CreatePostRequest(string PostName, string PostDescription);
 }
