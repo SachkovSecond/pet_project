@@ -20,8 +20,6 @@ namespace PetProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostRequest request, CancellationToken ct)
         {
-            if (request.PostName == "a")
-                return BadRequest();
             var post = new Post(request.PostName, request.PostDescription);
             await _dbContext.Posts.AddAsync(post, ct);
             await _dbContext.SaveChangesAsync(ct);
@@ -50,14 +48,16 @@ namespace PetProject.Controllers
             var post = await _dbContext.Posts.FindAsync(new object?[] { id }, cancellationToken: ct);
             if (post == null)
                 return NotFound();
-            await _dbContext.Posts.ExecuteUpdateAsync(s=>s.SetProperty(u=>u.PostName, u=>u.PostDescription), cancellationToken: ct);
+            await _dbContext.Posts.Where(w => w.PostId == id).ExecuteUpdateAsync(s=>
+                s.SetProperty(u=>u.PostName, u=>u.PostDescription), cancellationToken: ct);
             await _dbContext.SaveChangesAsync(ct);
-            return Ok(await _dbContext.Posts.FindAsync(new object?[] { id }, cancellationToken: ct));
+            return Ok(post);
         }
 
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult> Delete(Guid id, CancellationToken ct)
         {
+            //new object?[] { id } - предложил rider. Нормально ли так делать?
             var postToDelete = await _dbContext.Posts.FindAsync(new object?[] { id }, cancellationToken: ct);
             if (postToDelete == null)
                 return NotFound();
