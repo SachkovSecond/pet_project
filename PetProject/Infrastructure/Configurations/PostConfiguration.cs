@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetProject.Models;
 
-namespace PetProject.Configurations;
+namespace Infrastructure.Configurations;
 
 public class PostConfiguration : IEntityTypeConfiguration<Post>
 {

@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PetProject.Models;
+﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace PetProject.DataBase
+namespace Infrastructure.DataBase
 {
     public class ApplicationDbContext : DbContext
     {
